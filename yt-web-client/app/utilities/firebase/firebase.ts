@@ -7,6 +7,7 @@ import {
     onAuthStateChanged,
     User
 } from "firebase/auth";
+import { getFunctions } from "firebase/functions";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,6 +22,7 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Auth
 const auth = getAuth(app);
+export const functions = getFunctions();
 
 /**
  * Signs the user in with a Google popup
