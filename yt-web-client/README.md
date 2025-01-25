@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YouTube Clone Web Client
+On Web Client, user can watch video, log into the service, and upload new video. If user without account try to log in, it will create user data on Firebase and authenticate the user. After the authentication, upload icon will appear on the page. User can upload new video by clicking the icon.
 
-## Getting Started
+## Upload icon
+When user click upload icon, it will trigger `generateUploadUrl` function (you can find it in `yt-api-service` directory) on Cloud Run that generates Signed Url to make `PUT` request to save video file on the raw video Cloud Bucket.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Deployment
+Create repo in Google Artifact Registry.
+```
+gcloud artifacts repositories create yt-web-client-repo \
+    --repository-format=docker \
+    --location=us-central1 \
+    --description="Docker repository for youtube web client"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build and push Docker image to Google Artifact Registry. If you are mac user, add `--platform linux/amd64` for the build command below.
+```
+docker build -t us-central1-docker.pkg.dev/<PROJECT_ID>/yt-web-client-repo/yt-web-client .
+docker push us-central1-docker.pkg.dev/<PROJECT_ID>/yt-web-client-repo/yt-web-client
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Deploy Docker image to Cloud Run.
+```
+gcloud run deploy yt-web-client --image us-central1-docker.pkg.dev/PROJECT_ID/yt-web-client-repo/yt-web-client \
+  --region=us-central1 \
+  --platform managed \
+  --timeout=3600 \
+  --memory=2Gi \
+  --cpu=1 \
+  --min-instances=0 \
+  --max-instances=1
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Update allowlist of Firebase Authentication
+You can see the web client live now by visiting the URL provided by Cloud Run. When you click sign in button, authentication flow will probably fail. To make the consent screen works, visit the Firebase console and add its domain to `Authentication > Settings > Authorized domains`.
