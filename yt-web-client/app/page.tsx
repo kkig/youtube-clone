@@ -19,3 +19,6 @@ export default async function Home() {
     </main>
   );
 }
+
+// Disable cache for this page
+export const revalidate = 30;
