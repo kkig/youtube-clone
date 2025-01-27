@@ -9,6 +9,9 @@ import {
 } from "firebase/auth";
 import { getFunctions } from "firebase/functions";
 
+/**
+ * TODO: Remove hardcoded configurations
+ */
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAvrYPZGB24QUFDyautCeNN5kB73L6AlSk",

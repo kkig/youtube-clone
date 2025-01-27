@@ -11,6 +11,9 @@ initializeApp();
 const firestore = new Firestore();
 const storage = new Storage();
 
+/**
+ * TODO: Remove hardcoded ID and Bucket name
+ */
 const rawVideoBucketName = "nc-yt777-raw-videos";
 
 const videoCollectionId = "videos";

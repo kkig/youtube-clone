@@ -4,6 +4,9 @@ import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 function Video() {
+    /**
+     * TODO: Remove hardcoded configuration
+     */
     const videoPrefix = "https://storage.googleapis.com/nc-yt777-processed-videos/";
     const videoSrc = useSearchParams().get("v");
 

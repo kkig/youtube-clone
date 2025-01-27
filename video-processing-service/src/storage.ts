@@ -4,6 +4,9 @@ import ffmpeg from 'fluent-ffmpeg';
 
 const storage = new Storage();
 
+/**
+ * TODO: Remove hardcoded bucket names
+ */
 const rawVideoBucketName = "nc-yt777-raw-videos";
 const processedVideoBucketName = "nc-yt777-processed-videos";
 

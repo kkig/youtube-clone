@@ -4,6 +4,9 @@ import { Firestore } from "firebase-admin/firestore";
 
 initializeApp();
 
+/**
+ * TODO: Remove hardcoded ID
+ */
 const firestore = new Firestore();
 const videoCollectionId = "videos";
 
