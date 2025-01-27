@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+
+# Build directories
+dist/
+build/
+
+# Miscellaneous
+.env
+**.mov
+
+# IDEs and editors
+.vscode/
+
+# Operating system files
+.DS_Store
