@@ -34,7 +34,7 @@ export function convertVideo(rawVideoName: string, processedVideoName: string) {
                 console.log("Processing finished successfully.");
                 resolve();
             })
-            .on("error", (err) => {
+            .on("error", (err: any) => {
                 console.log(`An error occurred: ${err.message}`);
                 reject(err);
             })
