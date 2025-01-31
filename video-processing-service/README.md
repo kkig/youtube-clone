@@ -1,6 +1,6 @@
 # Video Processing Service on Google Cloud Run
 
-This service will handle video processing and record its metadata in Firestore. 
+This service will handle internal video processing and record its metadata in Firestore. 
 
 1. Upload video to Google Cloud Bucket (raw video bucket) from client.
 2. Bucket will trigger [Pub/Sub push notification](https://cloud.google.com/pubsub/docs/push) to POST `/process-video`.

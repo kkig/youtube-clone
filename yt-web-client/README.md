@@ -1,7 +1,35 @@
 # YouTube Clone Web Client
 On Web Client, user can watch video, log into the service, and upload new video. If user without account try to log in, it will create user data on Firebase and authenticate the user. After the authentication, upload icon will appear on the page. User can upload new video by clicking the icon.
 
-## Upload icon
+## Register app with Firebase project
+
+Go to [Firebase console](https://console.firebase.google.com/?authuser=3). Launch the setup workflow by clicking *Web icon (`</>`). You can find configuration to initialize your app.
+
+## Firebase Authentication
+
+Activating Firebase Authentication, you can authenticate user with your app. It will save basic user information such as identifier (ex. sample@gmail.com), Auth provoder (ex. Google or GitHub), the date of account creation (ex. Jan 1, 2025), and User UID. Go to `Build > Authentication` in [Firebase console](https://console.firebase.google.com/?authuser=3). Click `Get started` to launch set up flow.
+
+## Firestore Database
+Firestore Database is a serverless, fully managed NoSQL documentation database. Firebase in Native mode also offers a backend-as-a-service (BaaS) model. Access to the database is controlled based on the security rules you define in `Rules` tab. 
+
+Add database to store user information (ex. profile image) and video metadata (ex. processing status). Go to `Build > Firestore Database` in [Firebase console](https://console.firebase.google.com/?authuser=3). Click `Create database` to launch set up flow. The firestore will be also available in Google Cloud.
+
+## Firebase Function
+
+Go to `Build > Function` in [Firebase console](https://console.firebase.google.com/?authuser=3). Click `Get started` to launch installation flow.
+
+Install Firebase command line tools to your computer:
+```
+$ npm install -g firebase-tools
+```
+Authenticate:
+```
+firebase login
+```
+
+
+
+## Upload video
 When user click upload icon, it will trigger `generateUploadUrl` function (you can find it in `yt-api-service` directory) on Cloud Run that generates Signed Url to make `PUT` request to save video file on the raw video Cloud Bucket.
 
 ## Deployment
