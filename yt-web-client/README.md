@@ -14,21 +14,6 @@ Firestore Database is a serverless, fully managed NoSQL documentation database. 
 
 Add database to store user information (ex. profile image) and video metadata (ex. processing status). Go to `Build > Firestore Database` in [Firebase console](https://console.firebase.google.com/?authuser=3). Click `Create database` to launch set up flow. The firestore will be also available in Google Cloud.
 
-## Firebase Function
-
-Go to `Build > Function` in [Firebase console](https://console.firebase.google.com/?authuser=3). Click `Get started` to launch installation flow.
-
-Install Firebase command line tools to your computer:
-```
-$ npm install -g firebase-tools
-```
-Authenticate:
-```
-firebase login
-```
-
-
-
 ## Upload video
 When user click upload icon, it will trigger `generateUploadUrl` function (you can find it in `yt-api-service` directory) on Cloud Run that generates Signed Url to make `PUT` request to save video file on the raw video Cloud Bucket.
 

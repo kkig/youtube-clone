@@ -18,6 +18,11 @@ const rawVideoBucketName = "nc-yt777-raw-videos";
 
 const videoCollectionId = "videos";
 
+/**
+ * Triggered automatically every time user is created
+ * using Firebase Auth.
+ * UID in Firebase Auth will match with the one in Firestore Database.
+ */
 export const createUser = functions.auth.user().onCreate((user) => {
   const userInfo = {
     uid: user.uid,
