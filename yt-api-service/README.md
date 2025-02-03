@@ -54,7 +54,6 @@ Select raw video bucket > `Permissions` tab. Click `Grant Access` and add `Cloud
 ### IAM
 Select the same service account and add `Service Account Token Creater` role. 
 
-
 ## Reference
 - [Create Signed URL](https://cloud.google.com/storage/docs/samples/storage-generate-upload-signed-url-v4#storage_generate_upload_signed_url_v4-nodejs)
 - [Firebase Functions v1 and v2](https://firebase.google.com/docs/functions/version-comparison)

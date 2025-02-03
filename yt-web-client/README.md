@@ -3,7 +3,7 @@ On Web Client, user can watch video, log into the service, and upload new video.
 
 ## Register app with Firebase project
 
-Go to [Firebase console](https://console.firebase.google.com/?authuser=3). Launch the setup workflow by clicking *Web icon (`</>`). You can find configuration to initialize your app.
+Go to [Firebase console](https://console.firebase.google.com/?authuser=3). Launch the setup workflow by clicking **Web icon (`</>`)**. You can find configuration to initialize your app.
 
 ## Firebase Authentication
 
