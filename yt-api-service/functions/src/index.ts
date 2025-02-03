@@ -16,12 +16,13 @@ const storage = new Storage();
  */
 const rawVideoBucketName = "nc-yt777-raw-videos";
 
+const userCollectionId = "users";
 const videoCollectionId = "videos";
 
 /**
- * Triggered automatically every time user is created
- * using Firebase Auth.
- * UID in Firebase Auth will match with the one in Firestore Database.
+ * Create document in {@link userCollectionId}
+ * collection of Firestore for newly created
+ * Firebase Auth user.
  */
 export const createUser = functions.auth.user().onCreate((user) => {
   const userInfo = {
@@ -30,11 +31,17 @@ export const createUser = functions.auth.user().onCreate((user) => {
     photoUrl: user.photoURL,
   };
 
-  firestore.collection("users").doc(user.uid).set(userInfo);
+  firestore.collection(userCollectionId).doc(user.uid).set(userInfo);
   logger.info(`Create User: ${JSON.stringify(userInfo)}`);
   return;
 });
 
+/**
+ * Generate short-lived signed URL to access
+ * raw video Cloud Storage Bucket.
+ * @returns Object with signed URL and filename,
+ * otherwise throw error.
+ */
 export const generateUploadUrl = onCall({maxInstances: 1}, async (request) => {
   // Check if the user is authenticated
   if (!request.auth) {
