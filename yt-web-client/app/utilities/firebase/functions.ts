@@ -24,7 +24,7 @@ export async function uploadVideo(file: File) {
     method: "PUT", 
     body: file,
     headers: {
-      "Content-Type": file.type,
+      "Content-Type": "application/octet-stream",
     },
   });
 
