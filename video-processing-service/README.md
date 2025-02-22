@@ -113,7 +113,7 @@ gsutil mb -l <YOUR_REGION> --pap=enforced gs://<RAW_BUCKET_NAME>
 
 Configure bucket to send file upload notifications to Pub/Sub topic:
 ```
-gsutil notification create -t <TOPIC_NAME> -f json -e OBJECT_FINALIZE gs://<RAW_BUCKET_NAME>
+gsutil notification create -t <TOPIC_NAME> -f json OBJECT_FINALIZE gs://<RAW_BUCKET_NAME>
 ```
 
 Create processed video bucket:
