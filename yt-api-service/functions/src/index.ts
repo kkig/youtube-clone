@@ -19,22 +19,28 @@ const rawVideoBucketName = "nc-yt777-raw-videos";
 const userCollectionId = "users";
 const videoCollectionId = "videos";
 
+const region = "us-central1";
+
 /**
  * Create document in {@link userCollectionId}
  * collection of Firestore for newly created
  * Firebase Auth user.
  */
-export const createUser = functions.auth.user().onCreate((user) => {
-  const userInfo = {
-    uid: user.uid,
-    email: user.email,
-    photoUrl: user.photoURL,
-  };
+export const createUser = functions
+  .region(region)
+  .auth
+  .user()
+  .onCreate((user) => {
+    const userInfo = {
+      uid: user.uid,
+      email: user.email,
+      photoUrl: user.photoURL,
+    };
 
-  firestore.collection(userCollectionId).doc(user.uid).set(userInfo);
-  logger.info(`Create User: ${JSON.stringify(userInfo)}`);
-  return;
-});
+    firestore.collection("users").doc(user.uid).set(userInfo);
+    logger.info(`User Created: ${JSON.stringify(userInfo)}`);
+    return;
+  });
 
 /**
  * Generate short-lived signed URL to access
@@ -42,7 +48,7 @@ export const createUser = functions.auth.user().onCreate((user) => {
  * @returns Object with signed URL and filename,
  * otherwise throw error.
  */
-export const generateUploadUrl = onCall({maxInstances: 1}, async (request) => {
+export const generateUploadUrl = onCall({maxInstances: 1, region: region}, async (request) => {
   // Check if the user is authenticated
   if (!request.auth) {
     throw new functions.https.HttpsError(

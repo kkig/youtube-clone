@@ -45,8 +45,8 @@ NOTE: You may need to run `npm install` before deploying.
 ## Permissions
 Grant role to service account to access raw video Cloud Storage Bucket, because it is set to `private`.
 
-### Cloud Function Console
-Find service account in `generateUploadUrl` > `Details` tab.
+### Service account
+Find service account for `generateUploadUrl` in Cloud Run Console. `YAML` > `serviceAccountName`.
 
 ### Cloud Storage Bucket Console
 Select raw video bucket > `Permissions` tab. Click `Grant Access` and add `Cloud Storage` > `Storage Object Admin` role to the service account.
