@@ -25,7 +25,9 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Auth
 const auth = getAuth(app);
-export const functions = getFunctions();
+
+const region = "us-central1";
+export const functions = getFunctions(app, region);
 
 /**
  * Signs the user in with a Google popup
@@ -50,3 +52,4 @@ export function signOut() {
 export function onAuthStateChangedHelper(callback: (user: User | null) => void) {
     return onAuthStateChanged(auth, callback);
 }
+
