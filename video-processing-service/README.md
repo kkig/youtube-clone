@@ -91,7 +91,7 @@ gcloud pubsub topics create <TOPIC_NAME>
 ```
 
 Create subscription:
-For `--push-endpoint`, use your Cloud Run service's URL plus video processing service endpoint you defined. 
+For `--push-endpoint`, use your Cloud Run service's URL **plus video processing service endpoint(ex. /process-video)** you defined in index.ts.
 
 Example: 
 `https://video-processing-service-123456789012.us-central1.run.app/process-video`
